@@ -33,6 +33,17 @@ namespace ChatApp
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdminRole",
+                    policy => policy.RequireRole("Adminstrator"));
+                options.AddPolicy("RequireModRole",
+                    policy => policy.RequireRole("Moderator"));
+                options.AddPolicy("RequireAppUserRole",
+                    policy => policy.RequireRole("AppUser"));
+            });
+            
             services.AddRazorPages();
         }
 
