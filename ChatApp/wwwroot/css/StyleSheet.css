@@ -1,0 +1,23 @@
+﻿
+
+.main-box {
+    height: 100vh;
+    padding-top: 56px;
+    max-width: 1140px;
+    
+}
+
+.friend-box {
+    width: 300px;
+    overflow-y: auto;
+    font-size: 30px;
+    height: 100%;
+}
+
+.chat-box {
+    margin-left: 300px;
+    overflow-y: auto;
+    font-size: 30px;
+    height: 100%;
+    padding: 30px;
+}

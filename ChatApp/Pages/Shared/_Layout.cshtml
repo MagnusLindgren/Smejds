@@ -6,10 +6,11 @@
     <title>@ViewData["Title"] - ChatApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 position-fixed w-100">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">ChatApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,17 +31,17 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main" class="container-fluid main-box">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!--<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - ChatApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> -->
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
