@@ -33,18 +33,7 @@ namespace ChatApp
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("RequireAdminRole",
-                    policy => policy.RequireRole("Adminstrator"));
-                options.AddPolicy("RequireModRole",
-                    policy => policy.RequireRole("Moderator"));
-                options.AddPolicy("RequireAppUserRole",
-                    policy => policy.RequireRole("AppUser"));
-            });
-            
-            services.AddRazorPages();  // TODO lägga till authorize till olika foldrar
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
