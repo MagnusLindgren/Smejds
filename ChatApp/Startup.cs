@@ -44,7 +44,7 @@ namespace ChatApp
                     policy => policy.RequireRole("AppUser"));
             });
             
-            services.AddRazorPages();
+            services.AddRazorPages();  // TODO lägga till authorize till olika foldrar
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
