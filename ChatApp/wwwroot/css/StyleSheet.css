@@ -92,19 +92,49 @@
 
 .chat-box {
     overflow-y: auto;
-    background-color:red;
-    height:100%;
-    padding-top:140px;
+    color: white;
+    height: 100%;
+    padding-top: 140px;
+    padding-bottom: 58.8px;
 }
 .chat-text{
     position:absolute;
     width:100%;
     bottom:0;
 }
-.chat-text textarea{
-    width:100%;
-    resize:none;
-    display:block;
+    .chat-text textarea {
+        width: 100%;
+        resize: none;
+        display: block;
+        font-size: 14px;
+        background-color: #0F0F1B;
+        color:white;
+        padding:18px;
+        border:none;
+        border-top:solid 2px #2B1F38;
+    }
+        .chat-text textarea:focus {
+            border: none;
+            border-top: solid 2px #2B1F38;
+        }
+        .chat-text textarea:focus-visible{
+            outline:none;
+        }
+
+.chat-box::-webkit-scrollbar {
+    width: 8px; /* width of the entire scrollbar */
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: none; /* color of the tracking area */
+    margin-top: 146px;
+    margin-bottom: 60px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #666465; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+   
 }
 
 
