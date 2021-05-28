@@ -96,6 +96,15 @@
     height:100%;
     padding-top:140px;
 }
+.chat-text{
+    position:absolute;
+    width:100%;
+    bottom:0;
+}
+.chat-text textarea{
+    width:100%;
+    resize:none;
+}
 
 
 
