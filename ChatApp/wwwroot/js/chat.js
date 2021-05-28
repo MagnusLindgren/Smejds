@@ -29,3 +29,21 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     });
     event.preventDefault();
 });
+
+document.getElementById("sendButtonGroup").addEventListener("click", function (event) {
+    var user = document.getElementById("userInput").value;
+    var message = document.getElementById("messageInput").value;
+    document.getElementById("messageInput").value = "";
+    connection.invoke("SendMessageToGroup", user, message).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("joinGroup").addEventListener("click", function (event) {
+    var groupName = "1";
+    connection.invoke("AddToGroup", groupName).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
