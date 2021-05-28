@@ -60,8 +60,43 @@
     color: #B0ACAE;
 }
 
-.chat-box {
-    overflow-y: auto;
+/* ----Chat Box Content-----*/
+
+.chat-box-main {
+    
     font-size: 30px;
     height: 100%;
 }
+
+.chat-friend {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #0F0F1B;
+    /*
+        filter: blur(15px);
+    opacity: 0.95;
+    */
+}
+.chat-friend p {
+    margin-bottom:0px;
+}
+
+.profile-pic-content-L {
+    text-align:center;
+}
+
+.profile-pic-content-L img {
+    max-height: 80px;
+    border-radius: 50%;
+}
+
+.chat-box {
+    overflow-y: auto;
+    background-color:red;
+    height:100%;
+    padding-top:140px;
+}
+
+
+
+/* ----Chat Box Content-----*/
