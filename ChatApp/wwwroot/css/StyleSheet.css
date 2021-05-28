@@ -104,6 +104,7 @@
 .chat-text textarea{
     width:100%;
     resize:none;
+    display:block;
 }
 
 
