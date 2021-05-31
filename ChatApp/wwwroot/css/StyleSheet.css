@@ -23,15 +23,20 @@
     border-color: #4d2c77;
 }
 
+.navbar {
+    box-shadow: 0px 2px 15px 5px #00000078;
+}
 
 .main-box {
-    padding-top: 56px;
+    padding-top: 77px;
     height: 100vh
 }
 
 .friend-box {
     overflow-y: auto;
     height: 100%;
+    border-right: 2px solid #2b1f387d;
+    padding: 0;
 }
 
 .profile-pic-content {
@@ -63,26 +68,36 @@
 /* ----Chat Box Content-----*/
 
 .chat-box-main {
-    
+    padding: 0;
     font-size: 30px;
     height: 100%;
+    border-right: 2px solid #2b1f387d;
 }
 
 .chat-friend {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #0F0F1B;
-    /*
-        filter: blur(15px);
-    opacity: 0.95;
-    */
+    border-bottom: 2px solid #2b1f387d;
 }
 .chat-friend p {
     margin-bottom:0px;
 }
 
+.chat-friend-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /*background-color: #0f0f1bad;*/
+    backdrop-filter: blur(20px);
+}
+
 .profile-pic-content-L {
     text-align:center;
+    position: relative;
+    z-index: 2;
 }
 
 .profile-pic-content-L img {
@@ -96,6 +111,8 @@
     height: 100%;
     padding-top: 150px;
     padding-bottom: 58.8px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .chat-text{
     position:absolute;
@@ -108,10 +125,10 @@
         display: block;
         font-size: 14px;
         background-color: #0F0F1B;
-        color:white;
-        padding:18px;
-        border:none;
-        border-top:solid 2px #2B1F38;
+        color: white;
+        padding: 18px;
+        border: none;
+        border-top: solid 2px #2b1f387d;
     }
         .chat-text textarea:focus {
             border: none;
@@ -144,7 +161,7 @@
 .sent p, .recieved p {
     max-width: 70%;
     border-radius: 30px;
-    font-size:14px;
+    font-size:15px;
     padding:10px 15px;
 }
 .sent p {

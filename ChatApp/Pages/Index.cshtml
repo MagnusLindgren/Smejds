@@ -26,6 +26,7 @@
     <div class="col-8 chat-box-main ">
         <div class="position-relative h-100">
             <div class="chat-friend position-absolute w-100">
+                <div class="chat-friend-background"></div>
                 <div class="profile-pic-content-L">
                     <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
                     <p class="friend-name-large">Kalle Persson</p>
@@ -34,19 +35,131 @@
             <div class="chat-box">
                 @foreach (var item in Model.Mes)
                 {
-                    @if(item.user)
-                     {
+                    @if (item.user)
+                    {
                         <div class="sent">
                             <p>@item.message</p>
                         </div>
-                         
-                     }
+
+                    }
                     else
-                     {
+                    {
                         <div class="recieved">
                             <p>@item.message</p>
                         </div>
-                     }
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
                 }
             </div>
             <div class="chat-text position-absolute w-100">
