@@ -33,15 +33,16 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 document.getElementById("sendButtonGroup").addEventListener("click", function (event) {
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
+    var groupName = document.getElementById("joinGroupText").value;
     document.getElementById("messageInput").value = "";
-    connection.invoke("SendMessageToGroup", user, message).catch(function (err) {
+    connection.invoke("SendMessageToGroup", groupName, user, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
 });
 
 document.getElementById("joinGroup").addEventListener("click", function (event) {
-    var groupName = "1";
+    var groupName = document.getElementById("joinGroupText").value;
     connection.invoke("AddToGroup", groupName).catch(function (err) {
         return console.error(err.toString());
     });

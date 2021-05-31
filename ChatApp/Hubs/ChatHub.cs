@@ -12,16 +12,15 @@ namespace ChatApp.Hubs
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-        public Task SendMessageToGroup(string user, string message)
+        public Task SendMessageToGroup(string groupName, string user, string message)
         {
-            return Clients.Group("1").SendAsync("ReceiveMessage", user, message);
+            return Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
         }
         public async Task AddToGroup(string groupName)
         {
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName); // Byta ut Connection ID... till en annan User...
 
             await Clients.Group(groupName).SendAsync("ReceiveMessage", $"{Context.ConnectionId} has joined the group {groupName}.");
         }
-
     }
 }
