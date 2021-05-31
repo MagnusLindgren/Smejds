@@ -16,10 +16,29 @@ namespace ChatApp.Pages
         {
             _logger = logger;
         }
+        public class Message
+        {
+            public string message;
+            public bool user;
+        }
+        public List<Message> Mes { get; set; }
+        
 
         public void OnGet()
         {
+            List<Message> mes = new List<Message>()
+            {
+                new Message() { message = "Tjenna!", user = true },
+                new Message() { message = "Tjenna vad händer!", user = false },
+                new Message() { message = "Inte mycket dd?", user = true },
+                new Message() { message = "Försöker göra en schysst chatt hemsida", user = false }
+            };
+            Mes = mes;
+            
+
 
         }
+      
+
     }
 }
