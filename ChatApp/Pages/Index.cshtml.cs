@@ -23,7 +23,7 @@ namespace ChatApp.Pages
             public bool user;
         }
         public List<Message> Mes { get; set; }
-        
+
 
         public void OnGet()
         {
@@ -36,5 +36,6 @@ namespace ChatApp.Pages
                 new Message() { message = "Försöker göra en schysst chatt hemsida", user = false }
             };
             Mes = mes;
-   }
+        }
+    }
 }
