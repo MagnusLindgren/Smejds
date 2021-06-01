@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatApp.Hubs;
 
 namespace ChatApp.Pages
 {
@@ -19,7 +20,13 @@ namespace ChatApp.Pages
 
         public void OnGet()
         {
+            
+        }
 
+        public ActionResult OnClick()
+        {
+            Console.WriteLine("test");
+            return Page();
         }
     }
 }
