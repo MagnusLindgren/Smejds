@@ -4,45 +4,61 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container">
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
+<div class="row main-box">
+    <div class="col-4 friend-box">
+        <div class="friend-box-info">
+            <h3>Vänner</h3>
+            <button>+</button>
+        </div>
+        <div class="d-flex">
+            <div class="profile-pic-content">
+                <div class="profile-pic">
+                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
+                </div>
+            </div>
+            <div class="friend-content">
+                <div>
+                    <p class="friend-name">Kalle Persson</p>
+                </div>
+                <div class="friend-msg-content">
+                    <p class="friend-msg">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
-        <div class="col-6">
-            <input type="button" id="sendButtonGroup" value="Send Message To Group" />
-        </div>
-        <div class="col-6">
-            <input type="button" id="joinGroup" value="Join Group"/>
-        </div>
-        <div class="col-6">
-            <form method="post">
-                <input type="text" id="joinGroupText" value="groupName">
-            </form>
-            <a asp-page="indextest" id="joinGroup" onclick="OnClick">Click</a>
-        </div>
+    <div class="col-8 chat-box-main ">
+        <div class="position-relative h-100">
+            <div class="chat-friend position-absolute w-100">
+                <div class="chat-friend-background"></div>
+                <div class="profile-pic-content-L">
+                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
+                    <p class="friend-name-large">Kalle Persson</p>
+                </div>
+            </div>
+            <div class="chat-box">
+                @foreach (var item in Model.Mes)
+                {
+                    @if (item.user)
+                    {
+                        <div class="sent">
+                            <p>@item.message</p>
+                        </div>
 
+                    }
+                    else
+                    {
+                        <div class="recieved">
+                            <p>@item.message</p>
+                        </div>
+                    }
+                }
+                
+            </div>
+            <div class="chat-text position-absolute w-100">
+                <form action="/" method="post">
+                    <textarea id="txtChatBox" rows="1"></textarea>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-12">
-        <hr />
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList"></ul>
-    </div>
-</div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
