@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChatApp.Hubs;
 
 namespace ChatApp.Pages
 {
@@ -26,6 +27,7 @@ namespace ChatApp.Pages
 
         public void OnGet()
         {
+
             List<Message> mes = new List<Message>()
             {
                 new Message() { message = "Tjenna!", user = true },
@@ -34,11 +36,5 @@ namespace ChatApp.Pages
                 new Message() { message = "Försöker göra en schysst chatt hemsida", user = false }
             };
             Mes = mes;
-            
-
-
-        }
-      
-
-    }
+   }
 }
