@@ -27,7 +27,6 @@ namespace ChatApp.Pages
 
         public void OnGet()
         {
-
             List<Message> mes = new List<Message>()
             {
                 new Message() { message = "Tjenna!", user = true },
