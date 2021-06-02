@@ -196,3 +196,27 @@
 
 
 /* ----Chat Box Content-----*/
+
+/*---Login Page ---*/
+.login-main{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box {
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    align-content:center;
+    border: 1px solid black;
+    padding-left: 70px;
+    padding-right: 70px;
+    width: 450px;
+}
+.login-header{
+    font-size:20px;
+}
+
+/*---Login Page End---*/
