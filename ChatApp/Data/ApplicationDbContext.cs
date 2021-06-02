@@ -27,7 +27,7 @@ namespace ChatApp.Data
                 UserName = "Smejds@mail.com",
                 NormalizedUserName = "SMEJDS@MAIL.COM",
                 Email = "Smejds@mail.com",
-                NormalizedEmail = "SMEJDS@MAIL.COM",
+                NormalizedEmail ="SMEJDS@MAIL.COM",
                 EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Test")
             };
