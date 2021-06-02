@@ -4,14 +4,16 @@ using ChatApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChatApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210602094455_emailconfirmation")]
+    partial class emailconfirmation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,21 +118,21 @@ namespace ChatApp.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "47aee39b-68be-428c-847a-958328be565b",
+                            Id = "6f44b2b8-6a13-4e01-98a9-32ab1ea0cab9",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2a3527b3-b268-4c90-8e70-3fd61c86288f",
+                            ConcurrencyStamp = "f80e3271-319d-4fa9-835c-3f033118ed9b",
                             Email = "Smejds@mail.com",
                             EmailConfirmed = true,
                             FirstName = "Smejds",
                             LastName = "Smejdssson",
                             LockoutEnabled = false,
                             NormalizedEmail = "SMEJDS@MAIL.COM",
-                            NormalizedUserName = "SMEJDS@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ/hFFURyWxInvZ3EwAlkVwwRbbe/MdOIyYIQMJF0IMyhjlJdDq14TmweWF4v1x3hw==",
+                            NormalizedUserName = "SMEJDS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGwAW0HGdzcXfkKObnjF2Y2kR5W1JJv7ypSIzh1glX2olWF167IrwYaWowDuFIzRbA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d2bc2bcd-1aa7-422d-8ab6-e79e90c2f8d0",
+                            SecurityStamp = "2336ac88-1305-4163-b39d-1a4aa8b099a2",
                             TwoFactorEnabled = false,
-                            UserName = "Smejds@mail.com"
+                            UserName = "Smejds"
                         });
                 });
 
