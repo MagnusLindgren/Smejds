@@ -25,7 +25,7 @@ function executeChat() {
         if (event.key === 'Enter') {
             var user = "Dork" //document.getElementById("userInput").value;
             var message = document.getElementById("txtChatBox").value;
-            document.getElementById("txtChatBox").value = "";
+            document.getElementById("txtChatBox").value = "";           
             sendChatBubble(message);
             connection.invoke("SendMessage", user, message).catch(function (err) {
                 return console.error(err.toString());
@@ -34,6 +34,7 @@ function executeChat() {
         event.preventDefault();
     });
 }
+
 /*
 document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
     if (event.key === 'Enter') {
