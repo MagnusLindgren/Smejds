@@ -1,6 +1,10 @@
 ﻿"use strict";
 import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
+import { generateRoom } from "./modules/chatroom.js";
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+let addButton = document.getElementById("add")
+addButton.addEventListener("click", generateRoom);
 
 //Disable send button until connection is established
 //document.getElementById("sendButton").disabled = true;
