@@ -4,7 +4,12 @@ import { generateRoom } from "./modules/chatroom.js";
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 let addButton = document.getElementById("add")
-addButton.addEventListener("click", generateRoom);
+addButton.addEventListener("click", function() {
+    let chatRoom = document.querySelectorAll(".chat-box-main");
+    clearRoom(chatRoom);
+    generateRoom();
+    executeChat();
+});
 
 //Disable send button until connection is established
 //document.getElementById("sendButton").disabled = true;
@@ -15,6 +20,21 @@ connection.on("ReceiveMessage", function (user, message) {
 
 connection.start();
 
+function executeChat() {
+    document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
+        if (event.key === 'Enter') {
+            var user = "Dork" //document.getElementById("userInput").value;
+            var message = document.getElementById("txtChatBox").value;
+            document.getElementById("txtChatBox").value = "";
+            sendChatBubble(message);
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+        event.preventDefault();
+    });
+}
+/*
 document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
     if (event.key === 'Enter') {
         var user = "Dork" //document.getElementById("userInput").value;
@@ -26,7 +46,7 @@ document.getElementById("txtChatBox").addEventListener("keyup", function (event)
         });
     }
     event.preventDefault();
-});
+});*/
 /*
 document.getElementById("sendButtonGroup").addEventListener("click", function (event) {
     var user = document.getElementById("userInput").value;
@@ -46,3 +66,9 @@ document.getElementById("joinGroup").addEventListener("click", function (event) 
     });
     event.preventDefault();
 });*/
+
+function clearRoom(clear) {
+    for (var i = 0; i < clear.length; i++) {
+        clear[i].remove();
+    }
+}
