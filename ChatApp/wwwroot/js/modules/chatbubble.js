@@ -1,12 +1,13 @@
 ﻿// Script för att generera chatbubblor
-export { createChatBubble };
+export { sendChatBubble, receiveChatBubble };
 
-function createChatBubble(message) {
+var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+function sendChatBubble(message) {
 
     const chatbox = document.querySelector(".chat-box");
 
     const sent = document.createElement("div");
-    const recived = document.createElement("div");
     const text = document.createElement("p");
 
     chatbox.append(sent);
@@ -15,4 +16,18 @@ function createChatBubble(message) {
     text.textContent = message;
 
     sent.classList.add("sent");
+}
+
+function receiveChatBubble(message, user) {
+    const chatbox = document.querySelector(".chat-box");
+
+    const received = document.createElement("div");
+    const text = document.createElement("p");
+
+    chatbox.append(received);
+    received.append(text);
+
+    text.textContent = `${user}: ${message}`;
+
+    received.classList.add("recieved");
 }
