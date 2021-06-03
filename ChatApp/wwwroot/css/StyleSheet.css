@@ -61,10 +61,49 @@
 .friend-box-info .add-friend-btn:hover {
     background: #2b2b36;
 }
+.friend-box-info .add-friend-btn:focus,
+.friend-box-info .add-friend-btn:focus-visible {
+    outline: none;
+}
 
 .modal-content {
     background-color: #0F0F1B;
     color: #fff;
+}
+
+.modal-content input {
+    background-color: #19182B;
+    border: none;
+    color: #fff;
+}
+
+.modal-content input:focus {
+    background-color: #19182B;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+}
+
+.modal-content .modal-footer,
+.modal-content .modal-header {
+    border: none;
+}
+
+.modal-content .modal-body .form-group {
+    margin: 0;
+}
+
+.modal-content .nav-link {
+    color: #fff;
+}
+
+.modal-content .modal-footer {
+    padding-top: 0;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #2b2b36;
+    border-color: unset;
 }
 
 .profile-pic-content {
