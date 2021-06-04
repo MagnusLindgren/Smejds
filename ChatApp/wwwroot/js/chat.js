@@ -21,8 +21,9 @@ connection.on("ReceiveMessage", function (user, message) {
 connection.start();
 
 function executeChat() {
-    document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
-        if (event.key === 'Enter') {
+    document.getElementById("txtChatBox").addEventListener("keydown", function (event) {
+        if (event.keyCode == 13 && !event.shiftKey) {
+            event.preventDefault();
             var user = "Dork" //document.getElementById("userInput").value;
             var message = document.getElementById("txtChatBox").value;
             document.getElementById("txtChatBox").value = "";           
@@ -31,7 +32,6 @@ function executeChat() {
                 return console.error(err.toString());
             });
         }
-        event.preventDefault();
     });
 }
 
