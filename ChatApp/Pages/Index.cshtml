@@ -36,29 +36,13 @@
                 </div>
             </div>
             <div class="chat-box">
-                @foreach (var item in Model.Mes)
-                {
-                    @if (item.user)
-                    {
-                        <div class="sent">
-                            <p>@item.message</p>
-                        </div>
-
-                    }
-                    else
-                    {
-                        <div class="recieved">
-                            <p>@item.message</p>
-                        </div>
-                    }
-                }
-                
+                <ul id="messageList"></ul>
             </div>
             <div class="chat-text position-absolute w-100">
-                <form action="/" method="post">
-                    <textarea id="txtChatBox" rows="1"></textarea>
-                </form>
+                <textarea id="txtChatBox" rows="1"></textarea>
             </div>
         </div>
     </div>
 </div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

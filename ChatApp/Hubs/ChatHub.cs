@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+//using ChatApp.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
+using ChatApp.Models;
 
 namespace ChatApp.Hubs
 {
@@ -10,7 +16,9 @@ namespace ChatApp.Hubs
     {
         public async Task SendMessage(string user, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            user = Context.User.Identity.Name;
+            
+            await Clients.Others.SendAsync("ReceiveMessage", user, message);
         }
         public Task SendMessageToGroup(string groupName, string user, string message)
         {
