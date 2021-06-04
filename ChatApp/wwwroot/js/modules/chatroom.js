@@ -25,6 +25,8 @@ function generateRoom() {
     box.append(chatInputBox);
     chatInputBox.append(chatInputText);
 
+    chatInputText.rows = "1";
+
     friendName.textContent = "groupName";
 
     chatBoxMain.classList.add("col-8","chat-box-main");
@@ -37,5 +39,4 @@ function generateRoom() {
     chatBox.classList.add("chat-box");
     chatInputBox.classList.add("chat-text", "position-absolute", "w-100");
     chatInputText.setAttribute("id", "txtChatBox");
-
 }
