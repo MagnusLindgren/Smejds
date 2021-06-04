@@ -198,14 +198,14 @@
 /* ----Chat Box Content-----*/
 
 /*---Login Page ---*/
-.login-main{
+.login-main, .register-main{
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
 }
 
-.login-box {
+.login-box, .register-box {
     margin-left: auto;
     margin-right: auto;
     display: flex;
