@@ -8,7 +8,7 @@
     <div class="col-4 friend-box">
         <div class="friend-box-info">
             <h3>Vänner</h3>
-            <button>+</button>
+            <button id="add">+</button>
         </div>
         <div class="d-flex">
             <div class="profile-pic-content">
@@ -26,23 +26,8 @@
             </div>
         </div>
     </div>
-    <div class="col-8 chat-box-main ">
-        <div class="position-relative h-100">
-            <div class="chat-friend position-absolute w-100">
-                <div class="chat-friend-background"></div>
-                <div class="profile-pic-content-L">
-                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
-                    <p class="friend-name-large">Kalle Persson</p>
-                </div>
-            </div>
-            <div class="chat-box">
-                <ul id="messageList"></ul>
-            </div>
-            <div class="chat-text position-absolute w-100">
-                <textarea id="txtChatBox" rows="1"></textarea>
-            </div>
-        </div>
+    <div class="col-8 chat-box-main ">        
     </div>
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+<script type="module" src="~/js/chat.js"></script>
