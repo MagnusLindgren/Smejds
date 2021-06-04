@@ -11,7 +11,7 @@
     <div class="login-box">
             <form id="account" method="post">
                 <p class="login-header">Logga in</p>
-                <hr />
+                
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label  asp-for="Input.Email"></label>
@@ -35,15 +35,11 @@
                     <button type="submit" class="btn btn-primary">Log in</button>
                 </div>
                 <div class="form-group">
+                    
                     <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    <p class="register-p">Har du inget konto?Klicka </p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Här</a>
                     </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
+                    
                 </div>
             </form>
     </div>
