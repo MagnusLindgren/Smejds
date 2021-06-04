@@ -3,13 +3,16 @@ import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
 import { generateRoom } from "./modules/chatroom.js";
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
-let addButton = document.getElementById("add")
+let addButton = document.getElementById("create-group")
 addButton.addEventListener("click", function() {
     let chatRoom = document.querySelectorAll(".chat-box-main");
+    let groupName = document.getElementById("create-group-name").value;
     clearRoom(chatRoom);
-    generateRoom();
+    generateRoom(groupName);
     executeChat();
 });
+
+
 
 //Disable send button until connection is established
 //document.getElementById("sendButton").disabled = true;

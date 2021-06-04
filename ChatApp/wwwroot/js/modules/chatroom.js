@@ -1,6 +1,6 @@
 ﻿export { generateRoom }
 
-function generateRoom() {
+function generateRoom(groupName) {
     const main = document.querySelector(".main-box");
 
     const chatBoxMain = document.createElement("div");
@@ -27,7 +27,7 @@ function generateRoom() {
 
     chatInputText.rows = "1";
 
-    friendName.textContent = "groupName";
+    friendName.textContent = groupName;
 
     chatBoxMain.classList.add("col-8","chat-box-main");
     box.classList.add("position-relative","h-100");
