@@ -46,6 +46,18 @@ namespace ChatApp.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required] 
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
+
+            [Required]
+            [Display(Name = "Firstname")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Lastname")]
+            public string LastName { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -75,7 +87,7 @@ namespace ChatApp.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.UserName, FirstName = Input.FirstName, LastName = Input.LastName, Email = Input.Email, };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
