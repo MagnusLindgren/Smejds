@@ -24,13 +24,15 @@ function executeChat() {
     document.getElementById("txtChatBox").addEventListener("keydown", function (event) {
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
-            var user = "Dork" //document.getElementById("userInput").value;
             var message = document.getElementById("txtChatBox").value;
-            document.getElementById("txtChatBox").value = "";           
-            sendChatBubble(message);
-            connection.invoke("SendMessage", user, message).catch(function (err) {
-                return console.error(err.toString());
-            });
+            var user = "Dork" //document.getElementById("userInput").value;
+            if (message != null && message != "") {
+                document.getElementById("txtChatBox").value = "";
+                sendChatBubble(message);
+                connection.invoke("SendMessage", user, message).catch(function (err) {
+                    return console.error(err.toString());
+                });
+            }
         }
     });
 }
