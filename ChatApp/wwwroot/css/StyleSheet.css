@@ -260,3 +260,47 @@
 
 
 /* ----Chat Box Content-----*/
+
+/*---Login Page ---*/
+.login-main, .register-main{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box, .register-box {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top:40px;
+    padding-bottom:40px;
+    width: 450px;
+    box-shadow: 2px 2px 29px -2px rgba(0,0,0,1);
+    -webkit-box-shadow: 2px 2px 29px -2px rgba(0,0,0,1);
+    -moz-box-shadow: 2px 2px 29px -2px rgba(0,0,0,1);
+}
+.login-header{
+    font-size:25px;
+    margin-top:10px;
+}
+.login-input {
+    background-color: #19182a !important;
+    color: white;
+    border:none;
+}
+#account{
+    width:410px;
+}
+#account button{
+    width: 100%;
+}
+.register-p{
+    display:inline;
+}
+
+
+/*---Login Page End---*/

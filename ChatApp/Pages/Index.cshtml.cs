@@ -6,16 +6,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChatApp.Hubs;
+using Microsoft.AspNetCore.Identity;
+using ChatApp.Models;
+using ChatApp.Data;
 
 namespace ChatApp.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _logger = logger;
+            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         public class Message
         {
@@ -25,8 +34,13 @@ namespace ChatApp.Pages
         public List<Message> Mes { get; set; }
 
 
-        public void OnGet()
+        public async Task OnGetAsync(bool? resetDb)
         {
+            if (resetDb ?? false)
+            {
+                await _context.Seed(_userManager, _roleManager);
+            }
+
             List<Message> mes = new List<Message>()
             {
                 new Message() { message = "Tjenna!", user = true },

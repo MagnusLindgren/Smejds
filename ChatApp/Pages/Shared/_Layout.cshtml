@@ -25,12 +25,14 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li><a type="button" class="btn btn-danger btn-sm text-light" asp-route-resetDb="true">Reset Db</a></li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+
     <div>
         <main role="main" class="container-fluid" style="max-width: 1140px">
             @RenderBody()

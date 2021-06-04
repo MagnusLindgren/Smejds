@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ChatApp.Data
 {
@@ -13,12 +14,22 @@ namespace ChatApp.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options){}
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Message> Messages { get; set;  }
+        public DbSet<ChatUser> ChatUsers { get; set;  }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+
+        public async Task Seed(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            base.OnModelCreating(builder);
+            await Database.EnsureDeletedAsync();
+            await Database.EnsureCreatedAsync();
 
             var hasher = new PasswordHasher<User>();
+
+            await roleManager.CreateAsync(new IdentityRole("Administrator"));
+            await roleManager.CreateAsync(new IdentityRole("Moderator"));
+            await roleManager.CreateAsync(new IdentityRole("AppUser"));
+
+            await Roles.ToListAsync();
 
             User user = new User()
             {
@@ -27,12 +38,16 @@ namespace ChatApp.Data
                 UserName = "Smejds@mail.com",
                 NormalizedUserName = "SMEJDS@MAIL.COM",
                 Email = "Smejds@mail.com",
-                NormalizedEmail ="SMEJDS@MAIL.COM",
+                NormalizedEmail = "SMEJDS@MAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = hasher.HashPassword(null, "Test")
+                //PasswordHash = hasher.HashPassword(null, "Test")
             };
-            builder.Entity<User>().HasData(user);
+
+            await userManager.CreateAsync(user, "Test123!");
+            await userManager.AddToRoleAsync(user, "Administrator");
+
+            //await AddAsync(user);
+            await SaveChangesAsync();
         }
     }
 }
-
