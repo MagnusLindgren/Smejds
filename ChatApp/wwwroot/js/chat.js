@@ -90,5 +90,4 @@ function clearRoom(clear) {
         clear[i].remove();
     }
 }
-=======
-});
+
