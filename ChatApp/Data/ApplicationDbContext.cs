@@ -24,8 +24,11 @@ namespace ChatApp.Data
             {
                 FirstName = "Smejds",
                 LastName = "Smejdssson",
-                UserName = "Smejds",
-                NormalizedUserName = "SMEJDS",
+                UserName = "Smejds@mail.com",
+                NormalizedUserName = "SMEJDS@MAIL.COM",
+                Email = "Smejds@mail.com",
+                NormalizedEmail ="SMEJDS@MAIL.COM",
+                EmailConfirmed = true,
                 PasswordHash = hasher.HashPassword(null, "Test")
             };
             builder.Entity<User>().HasData(user);

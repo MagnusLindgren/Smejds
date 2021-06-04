@@ -51,6 +51,21 @@ document.getElementById("txtChatBox").addEventListener("keyup", function (event)
     event.preventDefault();
 });*/
 /*
+document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
+    if (event.key === 'Enter') {
+        var user = "You" //document.getElementById("userInput").value;
+        var message = document.getElementById("txtChatBox").value;
+        document.getElementById("txtChatBox").value = "";
+        var li = document.createElement("li");
+        document.getElementById("messageList").appendChild(li);
+        li.textContent = `${user}: ${message}`;
+        connection.invoke("SendMessage", user, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+    event.preventDefault();
+});
+/*
 document.getElementById("sendButtonGroup").addEventListener("click", function (event) {
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
@@ -75,3 +90,5 @@ function clearRoom(clear) {
         clear[i].remove();
     }
 }
+=======
+});
