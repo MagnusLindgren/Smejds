@@ -11,3 +11,13 @@ $("#txtChatBox").keypress(function (e) {
         $(this).closest("form").submit();
     }
 });
+
+const colorThief = new ColorThief();
+const img = new Image();
+
+img.addEventListener('load', function () {
+    colorThief.getColor(img);
+)};
+
+img.crossOrigin = 'Anonymous';
+img.src = 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png'
