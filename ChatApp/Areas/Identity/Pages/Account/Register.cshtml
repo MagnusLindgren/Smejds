@@ -42,7 +42,12 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control login-input" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="container">
+                <div class="row">
+                    <button type="submit" class="btn btn-primary col mr-2">Register</button>
+                    <a class="btn btn-primary col ml-2" asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Go back</a>
+                </div>
+            </div>
         </form>
     </div>
 </div>
