@@ -47,7 +47,13 @@ namespace ChatApp
                 options.AddPolicy("RequireAppUserRole",
                     policy => policy.RequireRole("AppUser"));
             });
-            
+
+            services.AddRazorPages(o =>
+            {
+                o.Conventions.AuthorizeFolder("/");
+               
+            });
+
             services.AddRazorPages();  // TODO lägga till authorize till olika foldrar
         }
 
