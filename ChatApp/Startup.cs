@@ -50,7 +50,8 @@ namespace ChatApp
 
             services.AddRazorPages(o =>
             {
-                o.Conventions.AuthorizeFolder("/", "RequireAppUserRole");
+                o.Conventions.AuthorizeFolder("/");
+               
             });
 
             services.AddRazorPages();  // TODO lägga till authorize till olika foldrar
