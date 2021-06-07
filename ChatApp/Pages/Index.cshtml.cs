@@ -33,7 +33,7 @@ namespace ChatApp.Pages
         }
         public List<Message> Mes { get; set; }
 
-
+        
         public async Task OnGetAsync(bool? resetDb)
         {
             if (resetDb ?? false)
