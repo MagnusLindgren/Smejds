@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace ChatApp.Areas.Identity.Pages.Account
 {
@@ -25,6 +26,8 @@ namespace ChatApp.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
+
+           
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
@@ -37,7 +40,7 @@ namespace ChatApp.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage();
+                return RedirectToPage("login");
             }
         }
     }
