@@ -3,8 +3,10 @@ import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
 import { generateRoom } from "./modules/chatroom.js";
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
-let addButton = document.getElementById("create-group")
-addButton.addEventListener("click", function() {
+connection.start();
+
+let createGroupButton = document.getElementById("create-group");
+createGroupButton.addEventListener("click", function() {
     let chatRoom = document.querySelectorAll(".chat-box-main");
     let groupName = document.getElementById("create-group-name").value;
     clearRoom(chatRoom);
@@ -12,7 +14,17 @@ addButton.addEventListener("click", function() {
     executeChat();
 });
 
-
+let joinRoomButton = document.getElementById("join-room");
+joinRoomButton.addEventListener("click", function (event) {
+    var groupName = document.getElementById("join-group-name").value;
+    connection.invoke("AddToGroup", groupName).catch(function (err) {
+        return console.error(err.toString());
+    });
+    let chatRoom = document.querySelectorAll(".chat-box-main");
+    clearRoom(chatRoom);
+    generateRoom(groupName);
+    executeChat();
+});
 
 //Disable send button until connection is established
 //document.getElementById("sendButton").disabled = true;
@@ -21,18 +33,17 @@ connection.on("ReceiveMessage", function (user, message) {
     receiveChatBubble(message, user);
 });
 
-connection.start();
-
 function executeChat() {
     document.getElementById("txtChatBox").addEventListener("keydown", function (event) {
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             var message = document.getElementById("txtChatBox").value;
-            var user = "Dork" //document.getElementById("userInput").value;
+            var groupName = document.getElementsByClassName("friend-name-large").value;
+            var user = "Dork"; //document.getElementById("userInput").value;
             if (message != null && message != "") {
-                document.getElementById("txtChatBox").value = "";
+                document.getElementById("txtChatBox").value = "";                
                 sendChatBubble(message);
-                connection.invoke("SendMessage", user, message).catch(function (err) {
+                connection.invoke("SendMessage", user, message, groupName).catch(function (err) {
                     return console.error(err.toString());
                 });
             }
