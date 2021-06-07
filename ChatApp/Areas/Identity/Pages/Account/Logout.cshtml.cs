@@ -40,7 +40,7 @@ namespace ChatApp.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage("login");
+                return RedirectToPage();
             }
         }
     }
