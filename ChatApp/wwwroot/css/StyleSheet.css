@@ -196,3 +196,14 @@
 
 
 /* ----Chat Box Content-----*/
+
+/* User Layout Pages*/
+
+.userpage-main-box {
+    padding-top: 77px;
+    height: 100vh
+}
+.userpage-box {
+    height: 100%;
+    padding: 0;
+}
