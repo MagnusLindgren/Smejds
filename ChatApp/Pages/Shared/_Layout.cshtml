@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/StyleSheet.css" />
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3 position-fixed w-100">
             <div class="container">
@@ -32,9 +34,10 @@
             </div>
         </nav>
     </header>
+    }
 
     <div>
-        <main role="main" class="container-fluid" style="max-width: 1140px">
+        <main role="main" class="container-fluid" style="max-width: 1140px; padding-top: 77px">
             @RenderBody()
         </main>
     </div>

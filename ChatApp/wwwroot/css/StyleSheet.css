@@ -42,8 +42,7 @@
 }
 
 .main-box {
-    padding-top: 77px;
-    height: 100vh
+    height: calc(100vh - 77px);
 }
 
 .friend-box {
@@ -263,7 +262,7 @@
 
 /*---Login Page ---*/
 .login-main, .register-main{
-    height:100vh;
+    height:calc(100vh - 77px);
     display:flex;
     justify-content:center;
     align-items:center;
