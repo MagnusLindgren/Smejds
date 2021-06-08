@@ -16,9 +16,9 @@ namespace ChatApp.Hubs
     {
         public async Task SendMessage(string user, string message, string groupName)        
         {
-            //user = Context.User.Identity.Name;
+            user = Context.User.Identity.Name;
             //await AddToGroup(groupName).ConfigureAwait(false);
-            await Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
+            await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
         }
 
         public Task SendMessageToGroup(string groupName, string user, string message)
@@ -27,11 +27,13 @@ namespace ChatApp.Hubs
         }
         public async Task AddToGroup(string groupName)
         {
-            //user = Context.User.Identity.Name;
+            var user = Context.User.Identity.Name;
 
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName); // Byta ut Connection ID... till en annan User...
 
-            await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", $"{Context.ConnectionId} has joined the group {groupName}.");
+            var message = $" has joined the group { groupName}.";
+
+            await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
         }
 
         /////////////////////////////////////////////////

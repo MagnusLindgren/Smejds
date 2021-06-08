@@ -5,6 +5,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 connection.start();
 
+/*
 let createGroupButton = document.getElementById("create-group");
 createGroupButton.addEventListener("click", function() {
     let chatRoom = document.querySelectorAll(".chat-box-main");
@@ -13,7 +14,7 @@ createGroupButton.addEventListener("click", function() {
     generateRoom(groupName);
     executeChat();
 });
-
+*/
 let joinRoomButton = document.getElementById("join-room");
 joinRoomButton.addEventListener("click", function (event) {
     var groupName = document.getElementById("join-group-name").value;
@@ -30,7 +31,8 @@ joinRoomButton.addEventListener("click", function (event) {
 //document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
-    receiveChatBubble(message, user);
+    console.log("ReceiveMessage Test")
+    receiveChatBubble(user, message);
 });
 
 function executeChat() {

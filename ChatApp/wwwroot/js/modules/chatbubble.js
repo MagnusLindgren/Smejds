@@ -21,7 +21,7 @@ function sendChatBubble(message) {
     sent.classList.add("sent");
 }
 
-function receiveChatBubble(message, user) {
+function receiveChatBubble(user, message) {
     const chatbox = document.querySelector(".chat-box");
 
     const received = document.createElement("div");
