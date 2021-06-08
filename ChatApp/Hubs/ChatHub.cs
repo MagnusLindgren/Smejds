@@ -18,7 +18,7 @@ namespace ChatApp.Hubs
         {
             //user = Context.User.Identity.Name;
             //await AddToGroup(groupName).ConfigureAwait(false);
-            await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
         }
 
         public Task SendMessageToGroup(string groupName, string user, string message)
