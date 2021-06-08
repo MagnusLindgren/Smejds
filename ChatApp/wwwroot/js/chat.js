@@ -38,7 +38,7 @@ function executeChat() {
         if (event.keyCode == 13 && !event.shiftKey) {
             event.preventDefault();
             var message = document.getElementById("txtChatBox").value;
-            var groupName = document.getElementsByClassName("friend-name-large").value;
+            var groupName = document.getElementById("groupName").innerText;
             var user = "Dork"; //document.getElementById("userInput").value;
             if (message != null && message != "") {
                 document.getElementById("txtChatBox").value = "";                
@@ -50,6 +50,7 @@ function executeChat() {
         }
     });
 }
+
 
 /*
 document.getElementById("txtChatBox").addEventListener("keyup", function (event) {
