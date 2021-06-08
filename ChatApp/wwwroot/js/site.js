@@ -3,14 +3,14 @@
 
 // Write your JavaScript code.
 
-
+/*
 $("#txtChatBox").keypress(function (e) {
     if (e.which === 13 && !e.shiftKey) {
         e.preventDefault();
 
         $(this).closest("form").submit();
     }
-});
+});*/
 
 const colorThief = new ColorThief();
 const img = new Image();
