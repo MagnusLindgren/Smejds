@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace ChatApp.Models
 {
-    public class Message
+    public class ChatRoom
     {
-        public int ID { get;  set; }
+        public int Id { get;  set; }
 
-        public string MessageText { get; set; }
         public string Name { get; set; }
-        public DateTime Timestamp { get; set; }
+        public DateTime Created_at_date { get; set; }
+ 
 
-        public int ChatId { get; set; }
+
+        public List<ChatMessage> Messages { get; set; }
 
         public List<User> Users { get; set; }
         

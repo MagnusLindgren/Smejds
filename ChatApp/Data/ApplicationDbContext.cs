@@ -14,8 +14,8 @@ namespace ChatApp.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options){}
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Message> Messages { get; set;  }
-        public DbSet<ChatUser> ChatUsers { get; set;  }
+        public DbSet<ChatMessage> ChatMessages { get; set;  }
+        public DbSet<ChatRoom> ChatRooms { get; set;  }
 
 
         public async Task Seed(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
@@ -29,6 +29,8 @@ namespace ChatApp.Data
             await roleManager.CreateAsync(new IdentityRole("Moderator"));
             await roleManager.CreateAsync(new IdentityRole("AppUser"));
 
+             
+                
             await Roles.ToListAsync();
 
             User user = new User()
@@ -40,11 +42,40 @@ namespace ChatApp.Data
                 Email = "Smejds@mail.com",
                 NormalizedEmail = "SMEJDS@MAIL.COM",
                 EmailConfirmed = true,
+
                 //PasswordHash = hasher.HashPassword(null, "Test")
+            };
+
+            
+
+     
+
+            var date = DateTime.Now;
+
+
+            ChatRoom chatrooms = new ChatRoom()
+            {
+                Name = "1",
+                Created_at_date = date,
+                Users = new List<User>() { user },
+
+            };
+
+            ChatMessage chatmessages = new ChatMessage()
+            {
+                MessageText = "Hej på er!",
+                Users = user,
+                ChatRoom = chatrooms,
+
+
             };
 
             await userManager.CreateAsync(user, "Test123!");
             await userManager.AddToRoleAsync(user, "Administrator");
+
+
+            await AddAsync(chatrooms);
+            await AddAsync(chatmessages);
 
             //await AddAsync(user);
             await SaveChangesAsync();
