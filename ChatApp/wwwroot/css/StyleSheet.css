@@ -42,7 +42,7 @@
 }
 
 .main-box {
-    height: calc(100vh - 77px);
+    height: calc(99vh - 77px);
     -webkit-box-shadow: 2px 2px 29px -2px rgb(0 0 0);
     border-radius: 15px 15px 15px 15px;
 }
