@@ -29,7 +29,7 @@ namespace ChatApp.Hubs
         {
             var user = Context.User.Identity.Name;
 
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName); // Byta ut Connection ID... till en annan User...
+            await Groups.AddToGroupAsync(user, groupName); // Byta ut Connection ID... till en annan User...
 
             var message = $" has joined the group { groupName}.";
 
