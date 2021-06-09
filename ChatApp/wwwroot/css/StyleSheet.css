@@ -43,6 +43,8 @@
 
 .main-box {
     height: calc(100vh - 77px);
+    -webkit-box-shadow: 2px 2px 29px -2px rgb(0 0 0);
+    border-radius: 15px 15px 15px 15px;
 }
 
 .friend-box {
@@ -201,25 +203,25 @@
     width:100%;
     bottom:0;
 }
-    .chat-text textarea {
-        width: 100%;
-        resize: none;
-        display: block;
-        font-size: 14px;
-        background-color: #0F0F1B;
-        color: white;
-        padding: 18px;
-        border: none;
-        border-top: solid 2px #2b1f387d;
-        border-radius: 0px 0px 15px 0px;
-    }
-        .chat-text textarea:focus {
-            border: none;
-            border-top: solid 2px #2B1F38;
-        }
-        .chat-text textarea:focus-visible{
-            outline:none;
-        }
+.chat-text textarea {
+    width: 100%;
+    resize: none;
+    display: block;
+    font-size: 14px;
+    background-color: #0F0F1B;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-top: solid 2px #2b1f387d;
+    border-radius: 0px 0px 15px 0px;
+}
+.chat-text textarea:focus {
+    border: none;
+    border-top: solid 2px #2B1F38;
+}
+.chat-text textarea:focus-visible{
+    outline:none;
+}
 
 .chat-box::-webkit-scrollbar {
     width: 8px; /* width of the entire scrollbar */
