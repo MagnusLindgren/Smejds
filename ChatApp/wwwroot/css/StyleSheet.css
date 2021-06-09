@@ -216,6 +216,7 @@
     border-radius: 0px 0px 15px 0px;
 }
 .chat-text textarea:focus {
+    transition: 0.3s;
     border: none;
     border-top: solid 2px #2B1F38;
 }
