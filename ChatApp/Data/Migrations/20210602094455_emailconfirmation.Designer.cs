@@ -4,38 +4,22 @@ using ChatApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ChatApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210602094455_emailconfirmation")]
+    partial class emailconfirmation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("ChatApp.Models.ChatUser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ChatId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ChatUsers");
-                });
 
             modelBuilder.Entity("ChatApp.Models.Message", b =>
                 {
@@ -45,9 +29,6 @@ namespace ChatApp.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("ChatId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ChatUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("MessageText")
@@ -61,9 +42,7 @@ namespace ChatApp.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("ChatUserId");
-
-                    b.ToTable("Messages");
+                    b.ToTable("Message");
                 });
 
             modelBuilder.Entity("ChatApp.Models.User", b =>
@@ -135,6 +114,26 @@ namespace ChatApp.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6f44b2b8-6a13-4e01-98a9-32ab1ea0cab9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f80e3271-319d-4fa9-835c-3f033118ed9b",
+                            Email = "Smejds@mail.com",
+                            EmailConfirmed = true,
+                            FirstName = "Smejds",
+                            LastName = "Smejdssson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SMEJDS@MAIL.COM",
+                            NormalizedUserName = "SMEJDS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGwAW0HGdzcXfkKObnjF2Y2kR5W1JJv7ypSIzh1glX2olWF167IrwYaWowDuFIzRbA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2336ac88-1305-4163-b39d-1a4aa8b099a2",
+                            TwoFactorEnabled = false,
+                            UserName = "Smejds"
+                        });
                 });
 
             modelBuilder.Entity("MessageUser", b =>
@@ -287,13 +286,6 @@ namespace ChatApp.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("ChatApp.Models.Message", b =>
-                {
-                    b.HasOne("ChatApp.Models.ChatUser", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("ChatUserId");
-                });
-
             modelBuilder.Entity("MessageUser", b =>
                 {
                     b.HasOne("ChatApp.Models.Message", null)
@@ -358,11 +350,6 @@ namespace ChatApp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ChatApp.Models.ChatUser", b =>
-                {
-                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

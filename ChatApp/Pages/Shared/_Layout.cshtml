@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/StyleSheet.css" />
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3 position-fixed w-100">
             <div class="container">
@@ -25,14 +27,17 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li><a type="button" class="btn btn-danger btn-sm text-light" asp-route-resetDb="true">Reset Db</a></li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
+    }
+
     <div>
-        <main role="main" class="container-fluid" style="max-width: 1140px">
+        <main role="main" class="container-fluid" style="max-width: 1140px; padding-top: 77px">
             @RenderBody()
         </main>
     </div>
@@ -45,6 +50,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChatApp.Hubs;
+using ChatApp.Models;
 
 namespace ChatApp
 {
@@ -33,7 +34,8 @@ namespace ChatApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddAuthorization(options =>
@@ -45,7 +47,13 @@ namespace ChatApp
                 options.AddPolicy("RequireAppUserRole",
                     policy => policy.RequireRole("AppUser"));
             });
-            
+
+            services.AddRazorPages(o =>
+            {
+                o.Conventions.AuthorizeFolder("/");
+               
+            });
+
             services.AddRazorPages();  // TODO lägga till authorize till olika foldrar
         }
 
