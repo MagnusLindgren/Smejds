@@ -27,7 +27,7 @@ joinRoomButton.addEventListener("click", function (event) {
     executeChat();
 });
 
-//Disable send button until connection is established
+//in send button until connection is established
 //document.getElementById("sendButton").disabled = true;
 
 connection.on("ReceiveMessage", function (user, message) {
