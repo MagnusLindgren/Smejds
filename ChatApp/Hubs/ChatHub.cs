@@ -9,11 +9,23 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
 using ChatApp.Models;
+// using ApplicationDbContext;
+using ChatApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChatApp.Hubs
 {
     public class ChatHub : Hub
     {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
+
+        public ChatHub (ApplicationDbContext context, UserManager<User> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+
         public async Task SendMessage(string user, string message, string groupName)        
         {
             user = Context.User.Identity.Name;
@@ -29,20 +41,40 @@ namespace ChatApp.Hubs
         {
             var user = Context.User.Identity.Name;
 
+           // var userInfo = await _userManager.GetUserAsync();
+
+            var userTest = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
+
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName); // Byta ut Connection ID... till en annan User...
 
+            ChatRoom test1 = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
+
+            if (test1 == null)
+            {
+                ChatRoom test = new ChatRoom()
+                {
+                    Name = groupName,
+                    Created_at_date = DateTime.Now,
+                    Users = new List<User>() { userTest }
+                    
+                };
+                await _context.ChatRooms.AddAsync(test);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                test1.Users.Add(userTest);
+                await _context.SaveChangesAsync();
+            }
+
+       
+
             var message = $" has joined the group { groupName}.";
-
+            
             await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
+            
         }
-
-        /////////////////////////////////////////////////
-  /*      public async Task PrivateMessage(string user, string message)
-        {
-            await Clients.Caller.SendAsync("SendMessage", user, message);
-
-        } */
-
+        
 
 
 
