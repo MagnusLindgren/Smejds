@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\UserPage\" />
     <Folder Include="wwwroot\lib\microsoft\" />
   </ItemGroup>
 
