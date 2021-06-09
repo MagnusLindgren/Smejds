@@ -165,6 +165,7 @@
 }
 
 .chat-friend-background {
+    border-radius: 0px 15px 0px 0px;
     position: absolute;
     left: 0;
     top: 0;
@@ -234,6 +235,31 @@
     border-radius: 20px; /* roundness of the scroll thumb */
    
 }
+
+
+
+
+
+
+#txtChatBox::-webkit-scrollbar {
+    width: 8px; /* width of the entire scrollbar */
+}
+
+#txtChatBox::-webkit-scrollbar-track {
+    background: none; /* color of the tracking area */
+    margin-top: 146px;
+    margin-bottom: 60px;
+}
+
+#txtChatBox::-webkit-scrollbar-thumb {
+    background-color: #666465; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+
+
+
+
 
 /*---ChatBubbla----*/
 .sent, .recieved{
@@ -306,6 +332,20 @@
     opacity: 1;
     color: #969696;
 }
+
+.chat-box-main {
+    border-radius: 0px 15px 15px 0px;
+    border: 2px solid #2b1f387d;
+    border-left: 0px;
+}
+    .chat-box-main p {
+        word-break: break-all;
+    }
+
+    .friend-box {
+        border-radius: 15px 0px 0px 15px;
+        border: 2px solid #2b1f387d;
+    }
 
 
 /*---Login Page End---*/
