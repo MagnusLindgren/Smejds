@@ -301,5 +301,11 @@
     display:inline;
 }
 
+.form-control:disabled, .form-control[readonly] {
+    background-color: #19182b;
+    opacity: 1;
+    color: #969696;
+}
+
 
 /*---Login Page End---*/
