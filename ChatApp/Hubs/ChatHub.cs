@@ -53,15 +53,15 @@ namespace ChatApp.Hubs
 
         public async Task SaveMessagesToDatabase(string user, string message, string groupName)
         {
-            var userTest = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
-            ChatRoom test1 = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
+            var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
+            ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
             ChatMessage chatMessage = new ChatMessage()
             {
                 MessageText = message,
-                Users = userTest,
+                Users = userModel,
                 Timestamp = DateTime.Now,
-                ChatRoom = test1
+                ChatRoom = chatRoomModel
             };
 
             await _context.ChatMessages.AddAsync(chatMessage);
@@ -70,39 +70,31 @@ namespace ChatApp.Hubs
 
         public async Task SaveGroupToDatabase(string user, string groupName)
         {
-            var userTest = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
+            var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
 
             await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
-            ChatRoom test1 = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
+            ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
-            if (test1 == null)
+            if (chatRoomModel == null)
             {
-                ChatRoom test = new ChatRoom()
+                ChatRoom chatRoomToModel = new ChatRoom()
                 {
                     Name = groupName,
                     Created_at_date = DateTime.Now,
-                    Users = new List<User>() { userTest }
+                    Users = new List<User>() { userModel }
                 };
-                await _context.ChatRooms.AddAsync(test);
+                await _context.ChatRooms.AddAsync(chatRoomToModel);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                if (!test1.Users.Contains(userTest))
+                if (!chatRoomModel.Users.Contains(userModel))
                 {
-                    test1.Users.Add(userTest);
+                    chatRoomModel.Users.Add(userModel);
                     await _context.SaveChangesAsync();
                 }
             }
         }
-
-
-
-
-
-
-
-        // Få ut ett unikt COnnectionID från varje användare, sen jämnför användarens ConnectionID med inkommande COnnectionID, så om det stämmer så är det till höger i chaten och är det fel så ska dte läggas till vänster
     }
 }
