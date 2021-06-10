@@ -7,7 +7,7 @@
 <div class="row main-box">
     <div class="col-4 friend-box">
         <div class="friend-box-info">
-            <h3>Vänner</h3>
+            <h3>Groups</h3>
             <!-- Button trigger modal -->
             <button type="button" class="add-friend-btn" data-toggle="modal" data-target="#exampleModalCenter">
                 <svg viewBox="0 0 24 24" width="24" height="24" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -94,21 +94,25 @@
                 <input type="search" class="form-control" placeholder="Search"/>
             </div>
         </div>
-        <div class="d-flex">
-            <div class="profile-pic-content">
-                <div class="profile-pic">
-                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
+        @foreach(var item in Model.ChatRoom)
+        {
+            <div class="d-flex">
+                <div class="profile-pic-content">
+                    <div class="profile-pic">
+                        <img src = "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
+                    </div>
+                </div>
+                <div class="friend-content">
+                    <div>
+                        <p class="friend-name">@item.Name</p>
+                    </div>
+                    <div class="friend-msg-content">
+                        <p class="friend-msg">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+                    </div>
                 </div>
             </div>
-            <div class="friend-content">
-                <div>
-                    <p class="friend-name">Kalle Persson</p>
-                </div>
-                <div class="friend-msg-content">
-                    <p class="friend-msg">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-                </div>
-            </div>
-        </div>
+        }
+        
     </div>
     <!--
     <div class="col-8 chat-box-main">
