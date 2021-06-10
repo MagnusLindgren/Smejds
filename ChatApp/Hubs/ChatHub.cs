@@ -43,6 +43,8 @@ namespace ChatApp.Hubs
         {
             var user = Context.User.Identity.Name;
 
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+
             await SaveGroupToDatabase(user, groupName);
 
             var message = $" has joined the group { groupName}.";
@@ -53,7 +55,7 @@ namespace ChatApp.Hubs
 
         public async Task SaveMessagesToDatabase(string user, string message, string groupName)
         {
-            var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
+            User userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
             ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
             ChatMessage chatMessage = new ChatMessage()
@@ -72,7 +74,7 @@ namespace ChatApp.Hubs
         {
             var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
 
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            
 
             ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
