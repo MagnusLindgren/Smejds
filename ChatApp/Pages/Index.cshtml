@@ -25,11 +25,6 @@
                                 <li class="col nav-item">
                                     <a class="nav-link" id="join-group-tab" data-toggle="pill" href="#join-group" role="tab" aria-controls="join-group" aria-selected="false">Join/Create group</a>
                                 </li>
-                                <!--
-    <li class="col nav-item">
-        <a class="nav-link" id="create-group-tab" data-toggle="pill" href="#create-group" role="tab" aria-controls="create-group" aria-selected="false">Create group</a>
-    </li>
-        -->
                             </ul>
                         </div>
                         <div class="tab-content" id="pills-tabContent">
@@ -67,39 +62,20 @@
                                     <button type="button" id="join-room" class="btn btn-primary">Join group</button>
                                 </div>
                             </div>
-                            <!--
-    <div class="tab-pane fade" id="create-group" role="tabpanel" aria-labelledby="create-group-tab">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Create group</h5>
-            <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="create-group-name">Group name</label>
-                <input type="text" class="form-control" id="create-group-name" placeholder="Enter group name">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="create-group" class="btn btn-primary">Create group</button>
-        </div>
-    </div>
-                                -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group mb-3 mt-4">
-                <input type="search" class="form-control" placeholder="Search"/>
+                <input type="search" class="form-control" placeholder="Search" />
             </div>
         </div>
-        @foreach(var item in Model.ChatRoom)
+        @foreach (var item in Model.ChatRoom)
         {
-            <div class="d-flex">
+            <div id="@item.Name" class="d-flex" onclick="myFunction(this);">
                 <div class="profile-pic-content">
                     <div class="profile-pic">
-                        <img src = "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
+                        <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
                     </div>
                 </div>
                 <div class="friend-content">
@@ -112,8 +88,17 @@
                 </div>
             </div>
         }
-        
     </div>
+@*    <script >
+        function someFunction(obj) {
+            let getId = $(obj).attr('id');
+            let chatRoom = document.querySelectorAll(".chat-box-main");
+            clearRoom(chatRoom);
+            generateRoom(getId);
+            executeChat();
+            //alert($(obj).attr('id'));
+        }
+    </script>*@
     <!--
     <div class="col-8 chat-box-main">
         <div class="position-relative h-100">
@@ -135,4 +120,3 @@
     </div>
 </div>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script type="module" src="~/js/chat.js"></script>
