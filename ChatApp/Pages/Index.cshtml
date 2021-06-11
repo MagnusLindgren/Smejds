@@ -49,7 +49,7 @@
         </div>
         @foreach (var item in Model.ChatRoom)
         {
-            <div id="@item.Name" class="d-flex" onclick="myFunction(this);">
+            <div id="@item.Name" class="d-flex mb-2" style="cursor:pointer;" onclick="myFunction(this);">
                 <div class="profile-pic-content">
                     <div class="profile-pic">
                         <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" />
@@ -66,33 +66,6 @@
             </div>
         }
     </div>
-@*    <script >
-        function someFunction(obj) {
-            let getId = $(obj).attr('id');
-            let chatRoom = document.querySelectorAll(".chat-box-main");
-            clearRoom(chatRoom);
-            generateRoom(getId);
-            executeChat();
-            //alert($(obj).attr('id'));
-        }
-    </script>*@
-    <!--
-    <div class="col-8 chat-box-main">
-        <div class="position-relative h-100">
-            <div class="chat-friend position-absolute w-100">
-                <div class="chat-friend-background"></div>
-                <div class="profile-pic-content-L">
-                    <img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco/v1440924046/wi1mlnkbn2jluko8pzkj.png" alt="Discord" crossorigin="anonymous" />
-                    <p class="friend-name-large">Kalle Persson</p>
-                </div>
-            </div>
-            <div id="chatBox" class="chat-box">
-            </div>
-            <div class="chat-text position-absolute w-100">
-                <textarea id="txtChatBox" rows="1"></textarea>
-            </div>
-        </div>
-      -->
     <div class="col-8 chat-box-main ">        
     </div>
 </div>
