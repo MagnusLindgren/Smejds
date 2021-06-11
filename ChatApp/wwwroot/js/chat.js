@@ -17,6 +17,7 @@ createGroupButton.addEventListener("click", function() {
 */
 let joinRoomButton = document.getElementById("join-room");
 joinRoomButton.addEventListener("click", function (event) {
+    connection.stop();
     var groupName = document.getElementById("join-group-name").value;
     connection.invoke("AddToGroup", groupName).catch(function (err) {
         return console.error(err.toString());
@@ -27,13 +28,18 @@ joinRoomButton.addEventListener("click", function (event) {
     executeChat();
 });
 
-function myFunction(value) {
-    let getId = $(value).attr('id')
+function myFunction(value) {    
     //alert($(value).attr('id'));
 
+    if (document.querySelector(".main-box").contains(document.getElementById("groupName"))) {
+        let groupName = document.getElementById("groupName").innerText;
+        connection.invoke("RemoveFromGroup", groupName);
+    };
+    let getId = $(value).attr('id');
     connection.invoke("AddToGroup", getId).catch(function (err) {
         return console.error(err.toString());
     });
+    
     let chatRoom = document.querySelectorAll(".chat-box-main");
     clearRoom(chatRoom);
     generateRoom(getId);
