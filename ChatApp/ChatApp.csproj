@@ -33,8 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Pages\UserPage\" />
     <Folder Include="wwwroot\lib\microsoft\" />
   </ItemGroup>
 

@@ -39,9 +39,12 @@ namespace ChatApp.Hubs
         {
             return Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
         }
+
         public async Task AddToGroup(string groupName)
         {
             var user = Context.User.Identity.Name;
+
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
 
             await SaveGroupToDatabase(user, groupName);
 
@@ -49,11 +52,22 @@ namespace ChatApp.Hubs
             
             await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
         }
-        
+
+        public async Task RemoveFromGroup(string groupName)
+        {
+            var user = Context.User.Identity.Name;
+
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+
+            var message = $" has left the group { groupName}.";
+
+            await Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
+        }
+
 
         public async Task SaveMessagesToDatabase(string user, string message, string groupName)
         {
-            var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
+            User userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
             ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
             ChatMessage chatMessage = new ChatMessage()
@@ -72,7 +86,7 @@ namespace ChatApp.Hubs
         {
             var userModel = await _context.Users.FirstOrDefaultAsync(o => o.UserName == user);
 
-            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+            
 
             ChatRoom chatRoomModel = _context.ChatRooms.Include(m => m.Users).FirstOrDefault(o => o.Name == groupName);
 
