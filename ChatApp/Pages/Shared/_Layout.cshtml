@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using Models
+@inject SignInManager<User> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,29 +14,26 @@
 <body>
     @if (User.Identity.IsAuthenticated)
     {
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3 position-fixed w-100">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ChatApp</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li><a type="button" class="btn btn-danger btn-sm text-light" asp-route-resetDb="true">Reset Db</a></li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3 position-fixed w-100">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">ChatApp</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                            {
+                                <li><a type="button" class="btn btn-danger btn-sm text-light" asp-route-resetDb="true">Reset Db</a></li>
+                            }
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
     }
 
     <div>
@@ -51,8 +51,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
-
+    <script type="module" src="~/js/modules/chatroom.js"></script>
+    <script type="module" src="~/js/modules/chatbubble.js"></script>
+    <script type="module" src="~/js/chat.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

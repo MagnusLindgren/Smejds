@@ -9,6 +9,7 @@ using ChatApp.Hubs;
 using Microsoft.AspNetCore.Identity;
 using ChatApp.Models;
 using ChatApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChatApp.Pages
 {
@@ -26,29 +27,21 @@ namespace ChatApp.Pages
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public class Message
-        {
-            public string message;
-            public bool user;
-        }
-        public List<Message> Mes { get; set; }
+        [BindProperty]
+        public List<ChatRoom> ChatRoom { get; set; }
 
-        
         public async Task OnGetAsync(bool? resetDb)
         {
             if (resetDb ?? false)
             {
                 await _context.Seed(_userManager, _roleManager);
             }
+            var user = User.Identity.Name;
 
-            List<Message> mes = new List<Message>()
-            {
-                new Message() { message = "Tjenna!", user = true },
-                new Message() { message = "Tjenna vad händer!", user = false },
-                new Message() { message = "Inte mycket dd?", user = true },
-                new Message() { message = "Försöker göra en schysst chatt hemsida", user = false }
-            };
-            Mes = mes;
+            // Hämtar Userns chatrooms i lista
+            User userModel = _context.Users.Include(r => r.ChatRooms).FirstOrDefault(o => o.UserName == user);
+
+            ChatRoom = userModel.ChatRooms;
         }
     }
 }

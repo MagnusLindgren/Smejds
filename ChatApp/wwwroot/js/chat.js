@@ -1,6 +1,7 @@
-﻿"use strict";
+﻿//"use strict";
 import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
 import { generateRoom } from "./modules/chatroom.js";
+
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 connection.start();
@@ -17,6 +18,10 @@ createGroupButton.addEventListener("click", function() {
 */
 let joinRoomButton = document.getElementById("join-room");
 joinRoomButton.addEventListener("click", function (event) {
+    if (document.querySelector(".main-box").contains(document.getElementById("groupName"))) {
+        let groupName = document.getElementById("groupName").innerText;
+        connection.invoke("RemoveFromGroup", groupName);
+    };
     var groupName = document.getElementById("join-group-name").value;
     connection.invoke("AddToGroup", groupName).catch(function (err) {
         return console.error(err.toString());
@@ -26,6 +31,26 @@ joinRoomButton.addEventListener("click", function (event) {
     generateRoom(groupName);
     executeChat();
 });
+
+function myFunction(value) {    
+    //alert($(value).attr('id'));
+
+    if (document.querySelector(".main-box").contains(document.getElementById("groupName"))) {
+        let groupName = document.getElementById("groupName").innerText;
+        connection.invoke("RemoveFromGroup", groupName);
+    };
+    let getId = $(value).attr('id');
+    connection.invoke("AddToGroup", getId).catch(function (err) {
+        return console.error(err.toString());
+    });
+    
+    let chatRoom = document.querySelectorAll(".chat-box-main");
+    clearRoom(chatRoom);
+    generateRoom(getId);
+    executeChat();
+}
+
+window.myFunction = myFunction;
 
 //in send button until connection is established
 //document.getElementById("sendButton").disabled = true;
