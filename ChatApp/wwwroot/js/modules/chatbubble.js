@@ -1,8 +1,6 @@
 ﻿// Script för att generera chatbubblor
 export { sendChatBubble, receiveChatBubble };
 
-var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
-
 function sendChatBubble(message) {
 
     const chatbox = document.querySelector(".chat-box");

@@ -1,5 +1,8 @@
 ﻿export { generateRoom }
 
+var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+connection.start();
+
 function generateRoom(groupName) {
     const main = document.querySelector(".main-box");
 
@@ -40,4 +43,20 @@ function generateRoom(groupName) {
     chatBox.classList.add("chat-box");
     chatInputBox.classList.add("chat-text", "position-absolute", "w-100");
     chatInputText.setAttribute("id", "txtChatBox");
+
+connection.invoke("GetMessageHistory", groupName).catch(function (err) {
+    return console.error(err.toString());
+});
 }
+
+connection.on("receiveHistory", function (chatMessagesJson) {
+    const main = document.querySelector(".chat-box-main");
+
+    const chatBoxMain = document.createElement("p");
+
+    main.append(chatBoxMain)
+
+    chatBoxMain.innerText = chatMessagesJson[1].MessageText;
+
+    console.log(chatMessagesJson);
+})

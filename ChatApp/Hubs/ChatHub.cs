@@ -12,6 +12,7 @@ using ChatApp.Models;
 // using ApplicationDbContext;
 using ChatApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace ChatApp.Hubs
 {
@@ -20,13 +21,13 @@ namespace ChatApp.Hubs
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        public ChatHub (ApplicationDbContext context, UserManager<User> userManager)
+        public ChatHub(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
-        public async Task SendMessage(string user, string message, string groupName)        
+        public async Task SendMessage(string user, string message, string groupName)
         {
             user = Context.User.Identity.Name;
             //await AddToGroup(groupName).ConfigureAwait(false);
@@ -48,10 +49,10 @@ namespace ChatApp.Hubs
             await SaveGroupToDatabase(user, groupName);
 
             var message = $" has joined the group { groupName}.";
-            
+
             await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
         }
-        
+
 
         public async Task SaveMessagesToDatabase(string user, string message, string groupName)
         {
@@ -69,6 +70,31 @@ namespace ChatApp.Hubs
             await _context.ChatMessages.AddAsync(chatMessage);
             await _context.SaveChangesAsync();
         }
+
+        public async Task GetMessageHistory(string groupName)
+        {
+            var chatHistoryList = await _context.ChatRooms.Include(z => z.Messages).Include(c => c.Users).FirstOrDefaultAsync(x => x.Name == groupName);
+
+            //List<ChatMessage> chatMessages = new List<ChatMessage>();
+            //List<ChatMessage> chatMessages = chatHistoryList.Messages;
+
+            var chatMessages = chatHistoryList.Messages;
+            Console.WriteLine(chatMessages);
+
+            var chatMessagesJson = JsonConvert.SerializeObject(chatMessages,
+                new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+            string test = "test";
+            //var test = _context.ChatRooms.FirstOrDefault(a => a.Name == groupName);
+
+            await Clients.Caller.SendAsync("receiveHistory", chatMessagesJson);
+
+            //return chatMessages;
+        }
+
 
         public async Task SaveGroupToDatabase(string user, string groupName)
         {
