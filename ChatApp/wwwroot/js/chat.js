@@ -17,7 +17,10 @@ createGroupButton.addEventListener("click", function() {
 */
 let joinRoomButton = document.getElementById("join-room");
 joinRoomButton.addEventListener("click", function (event) {
-    connection.stop();
+    if (document.querySelector(".main-box").contains(document.getElementById("groupName"))) {
+        let groupName = document.getElementById("groupName").innerText;
+        connection.invoke("RemoveFromGroup", groupName);
+    };
     var groupName = document.getElementById("join-group-name").value;
     connection.invoke("AddToGroup", groupName).catch(function (err) {
         return console.error(err.toString());
