@@ -40,6 +40,7 @@ namespace ChatApp.Hubs
         {
             return Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
         }
+
         public async Task AddToGroup(string groupName)
         {
             var user = Context.User.Identity.Name;
@@ -53,6 +54,16 @@ namespace ChatApp.Hubs
             await Clients.OthersInGroup(groupName).SendAsync("ReceiveMessage", user, message);
         }
 
+        public async Task RemoveFromGroup(string groupName)
+        {
+            var user = Context.User.Identity.Name;
+
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupName);
+
+            var message = $" has left the group { groupName}.";
+
+            await Clients.Group(groupName).SendAsync("ReceiveMessage", user, message);
+        }
 
         public async Task SaveMessagesToDatabase(string user, string message, string groupName)
         {
