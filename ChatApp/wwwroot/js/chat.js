@@ -1,6 +1,7 @@
 ﻿//"use strict";
 import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
 import { generateRoom } from "./modules/chatroom.js";
+
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 connection.start();
