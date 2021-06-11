@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿//"use strict";
 import { sendChatBubble, receiveChatBubble } from "./modules/chatbubble.js";
 import { generateRoom } from "./modules/chatroom.js";
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
@@ -26,6 +26,21 @@ joinRoomButton.addEventListener("click", function (event) {
     generateRoom(groupName);
     executeChat();
 });
+
+function myFunction(value) {
+    let getId = $(value).attr('id')
+    //alert($(value).attr('id'));
+
+    connection.invoke("AddToGroup", getId).catch(function (err) {
+        return console.error(err.toString());
+    });
+    let chatRoom = document.querySelectorAll(".chat-box-main");
+    clearRoom(chatRoom);
+    generateRoom(getId);
+    executeChat();
+}
+
+window.myFunction = myFunction;
 
 //in send button until connection is established
 //document.getElementById("sendButton").disabled = true;
