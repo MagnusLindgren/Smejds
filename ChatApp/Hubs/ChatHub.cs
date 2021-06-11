@@ -86,22 +86,21 @@ namespace ChatApp.Hubs
         {
             var chatHistoryList = await _context.ChatRooms.Include(z => z.Messages).Include(c => c.Users).FirstOrDefaultAsync(x => x.Name == groupName);
 
-            //List<ChatMessage> chatMessages = new List<ChatMessage>();
-            //List<ChatMessage> chatMessages = chatHistoryList.Messages;
+            if (chatHistoryList != null)
+            {
+                var chatMessages = chatHistoryList.Messages;
+                Console.WriteLine(chatMessages);
 
-            var chatMessages = chatHistoryList.Messages;
-            Console.WriteLine(chatMessages);
+                var chatMessagesJson = JsonConvert.SerializeObject(chatMessages,
+                    new JsonSerializerSettings
+                    {
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });
 
-            var chatMessagesJson = JsonConvert.SerializeObject(chatMessages,
-                new JsonSerializerSettings
-                {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
+                var user = Context.User.Identity.Name;
 
-            var user = Context.User.Identity.Name;
-
-            await Clients.Caller.SendAsync("receiveHistory", chatMessagesJson, user);
-
+                await Clients.Caller.SendAsync("receiveHistory", chatMessagesJson, user);
+            }
         }
 
 
