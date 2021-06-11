@@ -87,12 +87,10 @@ namespace ChatApp.Hubs
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 });
 
-            string test = "test";
-            //var test = _context.ChatRooms.FirstOrDefault(a => a.Name == groupName);
+            var user = Context.User.Identity.Name;
 
-            await Clients.Caller.SendAsync("receiveHistory", chatMessagesJson);
+            await Clients.Caller.SendAsync("receiveHistory", chatMessagesJson, user);
 
-            //return chatMessages;
         }
 
 

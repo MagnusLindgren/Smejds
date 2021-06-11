@@ -1,4 +1,5 @@
 ﻿export { generateRoom }
+import { sendChatBubble, receiveChatBubble} from "./chatbubble.js"
 
 var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 connection.start();
@@ -49,14 +50,24 @@ connection.invoke("GetMessageHistory", groupName).catch(function (err) {
 });
 }
 
-connection.on("receiveHistory", function (chatMessagesJson) {
-    const main = document.querySelector(".chat-box-main");
+connection.on("receiveHistory", function (chatMessagesJson, user) {
 
-    const chatBoxMain = document.createElement("p");
+    let chatMessagesJsontest = JSON.parse(chatMessagesJson);
 
-    main.append(chatBoxMain)
+    console.log(typeof chatMessagesJsontest);
+    console.log(chatMessagesJsontest.length);
 
-    chatBoxMain.innerText = chatMessagesJson[1].MessageText;
+    console.log(typeof user);
+    console.log(user);
 
-    console.log(chatMessagesJson);
+    for (var i = 0; i < chatMessagesJsontest.length; i++) {
+
+
+        if (chatMessagesJsontest[i].Users.UserName == user) {
+            sendChatBubble(chatMessagesJsontest[i].MessageText)
+        }
+        else {
+            receiveChatBubble(chatMessagesJsontest[i].Users.UserName, chatMessagesJsontest[i].MessageText)
+        }
+    }
 })
