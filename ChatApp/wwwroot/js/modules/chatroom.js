@@ -30,6 +30,7 @@ function generateRoom(groupName) {
     chatInputBox.append(chatInputText);
 
     chatInputText.rows = "1";
+    chatInputText.placeholder = "Message";
 
     friendName.textContent = groupName;
 

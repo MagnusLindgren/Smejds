@@ -42,7 +42,9 @@
 }
 
 .main-box {
-    height: calc(100vh - 77px);
+    height: calc(99vh - 77px);
+    -webkit-box-shadow: 2px 2px 29px -2px rgb(0 0 0);
+    border-radius: 15px 15px 15px 15px;
 }
 
 .friend-box {
@@ -165,6 +167,7 @@
 }
 
 .chat-friend-background {
+    border-radius: 0px 15px 0px 0px;
     position: absolute;
     left: 0;
     top: 0;
@@ -200,24 +203,26 @@
     width:100%;
     bottom:0;
 }
-    .chat-text textarea {
-        width: 100%;
-        resize: none;
-        display: block;
-        font-size: 14px;
-        background-color: #0F0F1B;
-        color: white;
-        padding: 18px;
-        border: none;
-        border-top: solid 2px #2b1f387d;
-    }
-        .chat-text textarea:focus {
-            border: none;
-            border-top: solid 2px #2B1F38;
-        }
-        .chat-text textarea:focus-visible{
-            outline:none;
-        }
+.chat-text textarea {
+    width: 100%;
+    resize: none;
+    display: block;
+    font-size: 14px;
+    background-color: #0F0F1B;
+    color: white;
+    padding: 18px;
+    border: none;
+    border-top: solid 2px #2b1f387d;
+    border-radius: 0px 0px 15px 0px;
+}
+.chat-text textarea:focus {
+    transition: 0.3s;
+    border: none;
+    border-top: solid 2px #2B1F38;
+}
+.chat-text textarea:focus-visible{
+    outline:none;
+}
 
 .chat-box::-webkit-scrollbar {
     width: 8px; /* width of the entire scrollbar */
@@ -234,6 +239,31 @@
     border-radius: 20px; /* roundness of the scroll thumb */
    
 }
+
+
+
+
+
+
+#txtChatBox::-webkit-scrollbar {
+    width: 8px; /* width of the entire scrollbar */
+}
+
+#txtChatBox::-webkit-scrollbar-track {
+    background: none; /* color of the tracking area */
+    margin-top: 146px;
+    margin-bottom: 60px;
+}
+
+#txtChatBox::-webkit-scrollbar-thumb {
+    background-color: #666465; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+
+
+
+
 
 /*---ChatBubbla----*/
 .sent, .recieved{
@@ -306,6 +336,20 @@
     opacity: 1;
     color: #969696;
 }
+
+.chat-box-main {
+    border-radius: 0px 15px 15px 0px;
+    border: 2px solid #2b1f387d;
+    border-left: 0px;
+}
+    .chat-box-main p {
+        word-break: break-all;
+    }
+
+    .friend-box {
+        border-radius: 15px 0px 0px 15px;
+        border: 2px solid #2b1f387d;
+    }
 
 
 /*---Login Page End---*/
